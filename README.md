@@ -55,10 +55,12 @@ $ gpg --armor --export 3AA5C34371567BD2
 
 
 > ***Note:***
-If you are not using atleast GPG 2.1.17 then the above command will not work paste this then:
+If you are not using atleast GPG 2.1.17 then the above command will not work so, paste this then:
 ```sh
 $ gpg --default-new-key-algo rsa4096 --gen-key
 ```
+and skip the steps for generating key above.
+
 
 (work in progress)
 
