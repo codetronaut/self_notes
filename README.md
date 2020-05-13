@@ -1,6 +1,4 @@
 # Set up GPG & Git to sign commits on GitHub
-(self notes)
-
 
 Step-by-step guide on how to create a GPG key and adding it to the a local GPG setup and use it with Git and any Git platform GitHub, Gitlab or even if you want to send patches through mailing-lists.
 
