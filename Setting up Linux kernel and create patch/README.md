@@ -20,7 +20,7 @@ $ git branch -a | grep linux-5
 
 # Copying the Configuration for Current Kernel from /boot
 
-> ***Note: copying the configuration for your current kernel from /proc/config.gz or /boot
+> ***Note: copying the configuration for your current kernel from /proc/config.gz or /boot***
 
 ```sh
 $ ls /boot
@@ -30,7 +30,7 @@ config-5.4.0-0.bpo.3-amd64  initrd.img-5.4.0-0.bpo.3-amd64  vmlinuz-5.2.21
 efi                         System.map-4.19.0-8-amd64       vmlinuz-5.4.0-0.bpo.3-amd64
 grub                        System.map-5.2.21
 
-$ cp /boot/<config-5.0.0-21-generic> .config
+$ cp /boot/<config-5.4.0-0.bpo.3-amd64> .config
 
 ```
 
@@ -69,7 +69,7 @@ above command will install the new kernel.
 
 Now, run `update-grub` to add the entry of the new kernel to the GRUB menu.
 
-# Boot the new kernel
+# Save some logs for debugging
 
 Before booting to the new kernel create log files from the current kernel to compare with the new one for errors and warnings, if any.
 
@@ -87,6 +87,36 @@ here `-t` flag helps to generate dmesg logs without timestamps.
 
 if `dmesg` is clean i.e without emerg, alert, crit, and err level messages then we are good to go. If these ocuurs then it's probably due to some hardwre and/or kernel problem.
 
-(creation and sending of patches in next commit...)
+# Boot the new kernel
+
+Last steps before booting new kernel:
+
+1) Increse the `GRUB_TIMEOUT` and set it to 10.
+2) comment out `GRUB_TIMEOUT_STYLE=hidden`
+
+make your configuration like this:
+
+```
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+GRUB_CMDLINE_LINUX_DEFAULT="quiet"
+GRUB_CMDLINE_LINUX=""
+```
+after saving it
+
+do
+
+```sh$ sudo update-grub
+```
+
+> ***Note: If the newly installed kernel fails to boot then go back to the already installed kernel and find issues why it's failed.***
+
+After booting into the new kernel again save the logs using `dmesg` and compare it with the old kernel.
 
 
+
+(sending of patches will be coveres in next commit...)
+
+
+Author: Anmol
