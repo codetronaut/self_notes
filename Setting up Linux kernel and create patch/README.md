@@ -20,7 +20,7 @@ $ git branch -a | grep linux-5
 
 # Copying the Configuration for Current Kernel from /boot
 
-> ***Note: copying the configuration for your current kernel from /proc/config.gz or /boot***
+> ***Note:copying the configuration for your current kernel from /proc/config.gz or /boot***
 
 ```sh
 $ ls /boot
@@ -98,7 +98,7 @@ make your configuration like this:
 
 ```
 GRUB_DEFAULT=0
-GRUB_TIMEOUT=5
+GRUB_TIMEOUT=10
 GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
 GRUB_CMDLINE_LINUX_DEFAULT="quiet"
 GRUB_CMDLINE_LINUX=""
@@ -113,6 +113,20 @@ do
 > ***Note: If the newly installed kernel fails to boot then go back to the already installed kernel and find issues why it's failed.***
 
 After booting into the new kernel again save the logs using `dmesg` and compare it with the old kernel.
+
+
+***Note: For installing `mutt` which is a terminal based email client which is very convenient to use during your pathes for the mailing list.***
+
+First run this command:
+```sh
+$ sudo apt install mutt
+```
+then 
+```sh
+$ sudo apt install sendmail 
+```
+for post setup  of `mutt` use  [this](https://www.ghacks.net/2019/11/23/mutt-is-a-command-line-email-app-for-linux-and-heres-how-to-set-it-up/).
+
 
 
 
