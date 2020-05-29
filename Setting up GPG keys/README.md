@@ -30,7 +30,7 @@ $ gpg --full-generate-key
 $ gpg --default-new-key-algo rsa4096 --gen-key
 
 ```
-and skip the steps for generating key above.
+and skip these below steps for generating key above.
 
 
 2) At the prompt, specify the kind of key you want, or press Enter to accept the default RSA and DSA and enter the desired key but keep in mind key must be at least 4096 bits.
@@ -71,7 +71,13 @@ $ gpg --armor --export 3AA5C34371567BD2
 
 10) And follw [Github's instructions](https://help.github.com/en/github/authenticating-to-github/adding-a-new-gpg-key-to-your-github-account) on how to add a GPG  key to Github.
 
-11) Once done with step-10 let's jumo to the other part i.e
+
+11) After that run 
+```sh
+$ git config --global user.signingkey 3AA5C34371567BD2
+ ```
+
+12) Once done with step-10 let's jump to the other part i.e
 
 # sign commits
 For signing commit you can either use 
